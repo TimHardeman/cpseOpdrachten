@@ -1,0 +1,23 @@
+gcc := g++ -std=c++17 
+ln := g++ -std=c++17 
+rm := rm -f
+
+.PHONY: build clean melody.cpp
+
+build: generator.exe
+
+clean:
+	$(rm) generator.exe generator.o custom_note_player.o fur_elise.o melody.o rtttl_player.o
+
+melody.cpp: generator.exe
+	./generator.exe
+
+generator.exe : generator.o rtttl_player.o
+	$(ln) generator.o rtttl_player.o -o generator.exe
+ 
+generator.o : generator.cpp custom_note_player.hpp fur_elise.hpp rtttl_player.cpp
+	$(gcc) -c generator.cpp -o generator.o
+
+rtttl_player.o : rtttl_player.cpp note_player.hpp
+	$(gcc) -c rtttl_player.cpp -o rtttl_player.o
+	
