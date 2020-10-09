@@ -1,0 +1,20 @@
+gcc := g++ -std=c++17 
+ln := g++ -std=c++17 
+rm := rm -f
+
+.PHONY: build clean run
+
+build: generator.exe
+
+run: generator.exe
+	./generator.exe
+
+clean:
+	$(rm) generator.exe generator.o application.o
+
+generator.exe : generator.o
+	$(ln) generator.o -o generator.exe
+ 
+generator.o : generator.cpp compressor.hpp match.hpp wilhelmus.txt
+	$(gcc) -c generator.cpp -o generator.o
+
