@@ -124,18 +124,24 @@ public:
 	std::array<char, 3> max(){
 		std::array<char, 3> max = values[0];
 		for(unsigned int i = 1; i < values.size(); i++){
-			for(unsigned int j = 0; j < values[i].size(); j++){
-				if(values[i][j] < max[j]){
-					break;
-				}
-				else if((values[i][j] > max[j])){
-					max = values[i];
-					break;
-				}
+			if(values[i] > max){
+				max = values[i];
 			}
 		}
 		return max;
 	}
 };
+
+bool operator<(std::array<char, 3> & lhs, std::array<char, 3> rhs){
+	for(unsigned int i = 0; i < 3; i++){
+				if(lhs[i] < rhs[i]){
+					return true;
+				}
+				else if(lhs[i] > rhs[i]){
+					return false;
+				}
+	}
+	return false;
+}
 		
 #endif // SET_HPP
