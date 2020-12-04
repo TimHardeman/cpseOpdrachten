@@ -1,0 +1,5 @@
+(220,29) CIRCLE red 100
+(113,290) RECTANGLE yellow (100,100)
+(466,86) LINE green (100,100)
+(365,283) PICTURE cat.jpg (0.2,0.2)
+(36,40) PICTURE bird.jpg (0.2,0.2)
